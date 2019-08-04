@@ -1,0 +1,53 @@
+<%= form_with(model: entry, local: true) do |form| %>
+  <% if entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+      <ul>
+      <% entry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :teamname %>
+    <%= form.text_field :teamname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :names %>
+    <%= form.text_field :names %>
+  </div>
+  <%=form.fields_for :users do |userform|%>
+  <div class="field">
+    <%= userform.label :users_ %>
+    <input type='text' name='entry[users][0][name]'>
+  </div>
+  <div class="field">
+    <%= userform.label :users_ %>
+    <input type='text' name='entry[users][1][name]'>
+  </div>
+  <div class="field">
+    <%= userform.label :users_ %>
+    <input type='text' name='entry[users][0][grade]'>
+  </div>
+  <div class="field">
+    <%= userform.label :users_ %>
+    <input type='text' name='entry[users][1][name]'>
+  </div>
+  <%end%>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <div class="field">
+    <%= form.label :files %>
+    <%= form.file_field :files, multiple: true%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
