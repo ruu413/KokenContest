@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Teamname</th>
-      <th>Names</th>
       <th>Description</th>
       <th colspan="3"></th>
     </tr>
@@ -16,7 +15,6 @@
     <% @entries.each do |entry| %>
       <tr>
         <td><%= entry.teamname %></td>
-        <td><%= entry.names %></td>
         <td><%= entry.description %></td>
         <td><%= link_to 'Show', entry %></td>
         <td><%= link_to 'Edit', edit_entry_path(entry) %></td>

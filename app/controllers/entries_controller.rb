@@ -25,6 +25,7 @@ class EntriesController < ApplicationController
   # POST /entries.json
   def create
     @entry = Entry.new(entry_params)
+    @users = Array.new(5){User.new}
     success_flag=true
     params[:entry][:users].each do |user|
       begin
@@ -88,6 +89,6 @@ class EntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
-      params.require(:entry).permit(:teamname, :names, :description,files: [])
+      params.require(:entry).permit(:teamname,:description,:user,:password,files: [])
     end
 end

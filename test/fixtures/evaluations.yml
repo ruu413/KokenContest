@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  school_num: 1
+  evaluate1: 1
+  evaluate2: 1
+  evaluate3: 1
+  evaluate4: MyString
+  : 1
+  comment: MyText
+
+two:
+  school_num: 1
+  evaluate1: 1
+  evaluate2: 1
+  evaluate3: 1
+  evaluate4: MyString
+  : 1
+  comment: MyText

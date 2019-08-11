@@ -15,29 +15,52 @@
     <%= form.label :teamname %>
     <%= form.text_field :teamname %>
   </div>
-
   <div class="field">
-    <%= form.label :names %>
-    <%= form.text_field :names %>
+    <%= form.label :type %>
+    <%= form.text_field :type %>
   </div>
   <%=form.fields_for :users do |userform|%>
-  <div class="field">
-    <%= userform.label :users_ %>
-    <input type='text' name='entry[users][0][name]'>
-  </div>
-  <div class="field">
-    <%= userform.label :users_ %>
-    <input type='text' name='entry[users][1][name]'>
-  </div>
-  <div class="field">
-    <%= userform.label :users_ %>
-    <input type='text' name='entry[users][0][grade]'>
-  </div>
-  <div class="field">
-    <%= userform.label :users_ %>
-    <input type='text' name='entry[users][1][name]'>
-  </div>
+    <%5.times do |i|%>
+      <div class = "userfield">
+      <h3>参加者<%=i+1%></h3>
+  　  <div class="field">
+        <%= userform.label "名前" %>
+        <input type='text' name='entry[users][<%=i%>][name]'>
+      </div>
+      <div class="field">
+        <%= userform.label "学年" %>
+        <input type='text' name='entry[users][<%=i%>][grade]'>
+      </div>
+      </div>
+  　<%end%>
   <%end%>
+  <div id = "testform">
+    <!--react-->
+    <%=react_component "UsersForm" ,{default_users:@entry.users}%>
+  </div>
+  <script type = "text/javascript">
+    /*let userfields = document.getElementsByClassName("userfield");
+    i=0;
+    let f = function(){
+      for(let f of userfields){
+      f.hidden=true;
+      }
+      i=0;
+      addUserForm();
+    }
+    
+    window.addEventListener("DOMContentLoaded",f)
+    let addUserForm = function () {
+      if(i>=3)return;
+      if(i>=2){
+        document.getElementById("addbutton").hidden=true
+
+      }
+      userfields[i].hidden=false;      
+      i++;
+    }*/
+  </script>
+  <input type = "button" id = "addbutton" onclick =addUserForm() value ="人数追加"></button>
   <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description %>
@@ -46,8 +69,13 @@
     <%= form.label :files %>
     <%= form.file_field :files, multiple: true%>
   </div>
-
+  
+  <div class="field">
+    <%#= form.label :password %>
+    <%#= form.password_field :password %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+<%= javascript_pack_tag 'application' %>
