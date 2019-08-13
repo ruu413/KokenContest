@@ -31,10 +31,7 @@ class EntriesController < ApplicationController
     params[:entry][:users].each do |user|
       begin
         user = User.new(grade: user[1][:grade].to_i, name: user[1][:name])
-        if(user.grade<0||user.grade>5)then
-          success_flag = false
-          break
-        end
+        
         @entry.users<<user
       rescue
         success_flag = false
@@ -67,7 +64,7 @@ class EntriesController < ApplicationController
         format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
         format.json { render :show, status: :created, location: @entry }
       else
-        format.html { render :new }
+        format.html { render "/evaluations/"+params[:id]+"/new" }
         format.json { render json: @entry.errors, status: :unprocessable_entity }
     
       end
@@ -83,10 +80,7 @@ class EntriesController < ApplicationController
     params[:entry][:users].each do |user|
       begin
         user = User.new(grade: user[1][:grade].to_i, name: user[1][:name])
-        if(user.grade<0||user.grade>5)then
-          success_flag = false
-          break
-        end
+        
         @entry.users<<user
       rescue
         success_flag = false

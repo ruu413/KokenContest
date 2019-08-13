@@ -1,7 +1,8 @@
 class EvaluationsController < ApplicationController
   before_action :set_evaluation, only: [:edit, :update, :destroy]
   
-  before_action :basic_auth
+  before_action :basic_auth, only: [:new]
+  before_action :basic_auth_admin, except:[:new]
   # GET /evaluations
   # GET /evaluations.json
   def index
@@ -32,7 +33,7 @@ class EvaluationsController < ApplicationController
     begin 
       if(@evaluation == nil)then
         
-        @evaluation = Evaluation.new(evaluation_params)
+        @evaluation = Evaluation.create(evaluation_params)
         @entry.evaluations<<@evaluation
       else
         success_flag = @evaluation.update(evaluation_params)
@@ -41,8 +42,9 @@ class EvaluationsController < ApplicationController
       success_flag = false
     end
 
-
-
+    if @evaluation == nil
+      @evaluation = Evaluation.new
+    end
     respond_to do |format|
       if success_flag
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }

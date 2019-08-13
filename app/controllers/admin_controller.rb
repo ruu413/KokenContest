@@ -1,4 +1,6 @@
 class AdminController < ApplicationController
+  
+  before_action :basic_auth_admin, only: [:index]
   def index
     @entries = Entry.all
   end
