@@ -25,12 +25,12 @@ class UsersForm extends React.Component {
             formid={id} onChange={(props)=>{this._onChange(id,props)}} onClick={(ev) => this._onClickDel(ev, id)}
           grade={user.grade} name={user.name} key={id} />
       })}
-      <input type="button" onClick={this._onClickAdd.bind(this)} value="人数追加" />
+        <input type="button" hidden={(this.state.users.length>=3)} onClick={this._onClickAdd.bind(this)} value="人数追加" />
     </React.Fragment>);
   }
   _onClickDel(ev, i) {
     let users = this.state.users.slice()
-    //console.log(users.splice(Number(i), 1));
+    users.splice(Number(i), 1);
     //console.log(i);
     this.setState({ users: users });
   }
@@ -73,7 +73,7 @@ class UserForm extends React.Component{
              {
                this._onNameChange.bind(this)
              } />
-        {(this.props.button) ? <input type='button' value='ボタン' onClick={this.props.onClick} />:
+        {(this.props.button) ? <input type='button' value='削除' onClick={this.props.onClick} />:
                 <p></p>}
       </div>);
   }

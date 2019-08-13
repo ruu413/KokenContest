@@ -64,7 +64,7 @@ class EntriesController < ApplicationController
         format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
         format.json { render :show, status: :created, location: @entry }
       else
-        format.html { render "/evaluations/"+params[:id]+"/new" }
+        format.html { render :new }
         format.json { render json: @entry.errors, status: :unprocessable_entity }
     
       end

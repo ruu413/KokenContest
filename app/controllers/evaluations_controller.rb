@@ -1,5 +1,5 @@
 class EvaluationsController < ApplicationController
-  before_action :set_evaluation, only: [:edit, :update, :destroy]
+  before_action :set_evaluation, only: [:destroy]
   
   before_action :basic_auth, only: [:new]
   before_action :basic_auth_admin, except:[:new]
@@ -24,11 +24,27 @@ class EvaluationsController < ApplicationController
   def edit
   end
 
+  def update_evaluate entry
+
+    if(entry.evaluations.size()!=0)
+      mean = 0.0
+      entry.evaluations.each do |i|
+        mean += i.evaluate1
+        mean += i.evaluate2
+        mean += i.evaluate3
+        mean += i.evaluate4.to_i
+      end
+      mean/=4*entry.evaluations.size()
+      entry.update(evaluation:mean)
+    else
+      entry.update(evaluation:0)
+    end
+  end
   # POST /evaluations/(entryid)
   # POST /evaluations/(entryid).json
   def create
     @entry = Entry.find(params[:id])
-    @evaluation = Evaluation.find_by(school_num:params[:evaluation][:school_num])
+    @evaluation = @entry.evaluations.find_by(school_num:params[:evaluation][:school_num])
     success_flag = true
     begin 
       if(@evaluation == nil)then
@@ -40,6 +56,9 @@ class EvaluationsController < ApplicationController
       end
     rescue
       success_flag = false
+    end
+    if(success_flag)
+      update_evaluate @entry
     end
 
     if @evaluation == nil
@@ -73,7 +92,9 @@ class EvaluationsController < ApplicationController
   # DELETE /evaluations/1
   # DELETE /evaluations/1.json
   def destroy
+    entry = @evaluation.entry
     @evaluation.destroy
+    update_evaluate entry
     respond_to do |format|
       format.html { redirect_to evaluations_url, notice: 'Evaluation was successfully destroyed.' }
       format.json { head :no_content }

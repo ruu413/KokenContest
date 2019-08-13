@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_08_10_162647) do
     t.string "teamname", null: false
     t.integer "type", null: false
     t.text "description"
-    t.integer "evaluation"
+    t.float "evaluation"
     t.integer "order", default: 0
     t.integer "evaoder", default: 0
     t.string "prodname", null: false
@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(version: 2019_08_10_162647) do
   create_table "evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "school_num", null: false
     t.integer "evaluate1", null: false
-    t.integer "evaluate2", null: false
-    t.integer "evaluate3", null: false
-    t.string "evaluate4", default: "0"
+    t.integer "evaluate2"
+    t.integer "evaluate3"
+    t.integer "evaluate4"
     t.text "comment"
     t.integer "entry_id"
     t.datetime "created_at", null: false

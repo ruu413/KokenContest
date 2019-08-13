@@ -4,7 +4,7 @@ class CreateEntries < ActiveRecord::Migration[5.2]
       t.string :teamname, :null => false
       t.integer :type, :null=> false
       t.text :description
-      t.integer :evaluation, :defalut => 0
+      t.float :evaluation, :defalut => 0
       t.integer :order, :default => 0
       t.integer :evaoder, :default => 0
       t.string :prodname, :null => false
