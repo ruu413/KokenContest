@@ -7,7 +7,7 @@ class CreateEntries < ActiveRecord::Migration[5.2]
       t.integer :evaluation, :defalut => 0
       t.integer :order, :default => 0
       t.integer :evaoder, :default => 0
-      
+      t.string :prodname, :null => false
       t.string :password_digest
       t.timestamps
     end

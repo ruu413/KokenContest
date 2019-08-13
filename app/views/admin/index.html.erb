@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h1>発表順編集</h1>
+<div>
+<h3>エントリー一覧</h3>
+<%=form_with(scope: :post,url: "/admin") do |form|%>
+  <%=react_component "EditOrderTable" %>
+  <%=form.submit "送信"%>
+<%end%>
+<br>
+
+<%= javascript_pack_tag 'application' %>

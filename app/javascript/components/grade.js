@@ -7,6 +7,6 @@ var getGradeStr = function (grade) {
         4: "修士1年",
         5: "修士2年",
     };
-    return gradestr[grade]
+    return gradestr[grade];
 };
 export default getGradeStr

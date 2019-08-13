@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Entries</h1>
+<h1>工研コンテスト</h1>
+<div>
+<p>工研内で行われるコンテストのエントリーページです。
+ハード部門、ソフト部門それぞれの優勝者には5000円分の好きなものが買える権利がもらえます。
+この機会に何か作ってみるのもいいのではないでしょうか。
+</P>
 
-<table>
+<!--<table>
   <thead>
     <tr>
       <th>Teamname</th>
@@ -12,18 +17,22 @@
   </thead>
 
   <tbody>
-    <% @entries.each do |entry| %>
+    <%# @entries.each do |entry| %>
       <tr>
-        <td><%= entry.teamname %></td>
-        <td><%= entry.description %></td>
-        <td><%= link_to 'Show', entry %></td>
-        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= entry.teamname %></td>
+        <td><%#= entry.description %></td>
+        <td><%#= link_to 'Show', entry %></td>
+        <td><%#= link_to 'Edit', edit_entry_path(entry) %></td>
+        <td><%#= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <% #end %>
   </tbody>
-</table>
-
+</table>-->
+<div>
+<h3>エントリー一覧</h3>
+<%=react_component "IndexTable" ,{}%>
+</div>
 <br>
 
-<%= link_to 'New Entry', new_entry_path %>
+<%= link_to '新規エントリー', new_entry_path %>
+<%= javascript_pack_tag 'application' %>

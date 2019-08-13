@@ -1,17 +1,40 @@
 <p id="notice"><%= notice %></p>
-
+<%gradestr = ["1年","2年","3年","4年","院1年","院2年"]%>
 <p>
-  <strong>Teamname:</strong>
+  <strong>部門:</strong>
+  <%if @entry.type==0%>
+    ハード
+  <%else%>
+    ソフト
+  <%end%>
+</p>
+<p>
+  <strong>チーム名:</strong>
   <%= @entry.teamname %>
 </p>
-
+<div>
+  <p><strong>構成員:</strong></p>
+  <%@entry.users.each do |user|%>
+    <%=gradestr[user.grade]%>
+    <%=user.name%>
+  <%end%>
+</div>
 <p>
+  <strong>作品名:</strong>
+  <%= @entry.prodname %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>作品の説明:</strong>
   <%= @entry.description %>
 </p>
 
+
+<p>
+  <strong>作品の紹介ファイル:</strong>
+  <% @entry.files.each do |file| %>
+    <%=link_to  file.blob.filename.to_s, url_for(file)%>
+  <%end%>
+</p>
 <%= link_to 'Edit', edit_entry_path(@entry) %> |
 <%= link_to 'Back', entries_path %>
