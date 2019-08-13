@@ -11,7 +11,7 @@ import getTypeStr from './type';
 class EditOrderTable extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    //console.log(props);
     this.req = new XMLHttpRequest();
     this.req.onreadystatechange = this._getJson.bind(this);
     this.req.open('GET', '/entries.json', true);
@@ -24,7 +24,7 @@ class EditOrderTable extends React.Component {
     if (this.req.readyState == 4) {  // 通信の完了時
       if (this.req.status == 200) {  // 通信の成功時
         this.setState({entries: JSON.parse(this.req.responseText)});
-        console.log(JSON.parse(this.req.responseText));
+        //console.log(JSON.parse(this.req.responseText));
       }
     } else {
     }
@@ -78,11 +78,11 @@ class EntryTr extends React.Component {
     super(props);
   }
   render() {
-    console.log(this.props)
+    //console.log(this.props)
     const span=this.props.entry.users.length
     let users_1toE = this.props.entry.users.slice()
     users_1toE.shift()
-    console.log(users_1toE)
+    //console.log(users_1toE)
     return (
       <React.Fragment>
         <tr>
