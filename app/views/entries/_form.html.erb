@@ -1,3 +1,4 @@
+<div class = "card">
 <%= form_with(model: entry,local: true) do |form| %>
   <% if entry.errors.any? %>
     <div id="error_explanation">
@@ -11,13 +12,13 @@
     </div>
   <% end %>
   
-  <div class="field">
+  <div class="form-group">
     <%= form.label "チーム名" %>
-    <%= form.text_field :teamname %>
+    <%= form.text_field :teamname ,:class=>"form-control"%>
   </div>  
-  <div class="field">
+  <div class="form-group">
     <%= form.label "部門" %>
-    <%=form.select(:type, {"ハード":0,"ソフト":1},:selected=>@entry.type)%>
+    <%=form.select(:type, {"ハード":0,"ソフト":1},{:selected=>@entry.type},{:class=>"form-control"})%>
   </div>
   <div class = "field">
   
@@ -25,25 +26,26 @@
     <%=react_component "UsersForm" ,{default_users:@entry.users}%>
   </div>
   
-  <div class="field">
+  <div class="form-group">
     <%= form.label "作品名(未定でもok)" %>
-    <%= form.text_field :prodname %>
+    <%= form.text_field :prodname ,:class=>"form-control"%>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label "作品の説明" %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description,:class=>"form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= form.label "紹介するファイル等" %>
-    <%= form.file_field :files, multiple: true%>
+    <%= form.file_field :files, multiple: true,:class=>"form-control-file"%>
   </div>
   
-  <div class="field">
+  <div class="form-group">
     <%#= form.label :password %>
     <%#= form.password_field :password %>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class=>"btn btn-primary active"%>
   </div>
 <% end %>
+</div>
 <%= javascript_pack_tag 'application' %>

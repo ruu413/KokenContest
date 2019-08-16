@@ -24,10 +24,12 @@ class UsersForm extends React.Component {
           return <UserForm button={this.state.users.length != 1 || id != 0}
             formid={id} onChange={(props)=>{this._onChange(id,props)}} onClick={(ev) => this._onClickDel(ev, id)}
           grade={user.grade} name={user.name} key={id} />
-      })}
-        <input type="button" hidden={(this.state.users.length>=3)} onClick={this._onClickAdd.bind(this)} value="人数追加" />
+        })}
+        <div>
+        <input type="button" className="btn btn-secondary" hidden={(this.state.users.length>=4)} onClick={this._onClickAdd.bind(this)} value="人数追加" />
+        </div>
     </React.Fragment>);
-  }
+      }
   _onClickDel(ev, i) {
     let users = this.state.users.slice()
     users.splice(Number(i), 1);
@@ -59,21 +61,25 @@ class UserForm extends React.Component{
   render() {
     return (
       <div>
-        <h3>参加者{Number(this.props.formid)+1}</h3>
-                <label>学年</label>
-        <select value={this.props.grade}name={"entry[users][" + this.props.formid + "][grade]"}
+        <h5>参加者{Number(this.props.formid)+1}</h5>
+        <div className="form-group">
+          <label>学年</label>
+          <select className="form-control" value={this.props.grade}name={"entry[users][" + this.props.formid + "][grade]"}
           onChange={this._onGradeChange.bind(this)}>
           {[0, 1, 2, 3, 4, 5].map(
             (val) => <option value={val} key={val}>{getGradeStr(val)}</option>)}
 
-            </select>
+          </select>
+        </div>
+        <div className="form-group">
         <label>名前</label>
-            <input type = 'text' value = {this.props.name} name =
+          <input type='text' className="form-control" value = {this.props.name} name =
                  {'entry[users][' + this.props.formid + '][name]'} onChange =
              {
                this._onNameChange.bind(this)
-             } />
-        {(this.props.button) ? <input type='button' value='削除' onClick={this.props.onClick} />:
+            } />
+        </div>
+        {(this.props.button) ? <input type='button' className="btn btn-danger active" value='削除' onClick={this.props.onClick} />:
                 <p></p>}
       </div>);
   }

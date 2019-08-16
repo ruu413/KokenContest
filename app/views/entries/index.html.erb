@@ -1,11 +1,38 @@
 <p id="notice"><%= notice %></p>
 
+<div class = "container">
 <h1>工研コンテスト</h1>
-<div>
-<p>工研内で行われるコンテストのエントリーページです。
-ハード部門、ソフト部門それぞれの優勝者には5000円分の好きなものが買える権利がもらえます。
+<div class="card">
+<div class="card-body">
+<h4 class="card-title">概要</h4>
+<p>工研コンテストのエントリーページです。
+夏休みのどこかで発表会が行われます。
+ハード部門・ソフト部門 各部門で優勝賞品があります。(5000円を予定)
 この機会に何か作ってみるのもいいのではないでしょうか。
 </P>
+</div></div>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">レギュレーション</h4>
+    <h6 class="card-subtitle mb-2">参加について</h6>
+    <p class="card-text">
+    工研部員なら自由に参加できます。<br>
+    複数チームへの所属はナシ, ただし主所属先を決めればよく他プロジェクトに一切かかわってはいけないわけではありません。(アドバイス、相談ok!)
+    <h6 class="card-subtitle mb-2">発表について</h6>
+    <p class="card-text">1人（もしくは1チーム）5〜10分<p>
+    <h6 class="card-subtitle mb-2">評価基準(5段階)</h6>
+    <p class="card-text">
+       完成度<br>
+       新規性<br>
+       期待度<br>
+       ソフト、ハード部門それぞれで評価の平均が最も高かったチームが優勝になります。
+    </p>
+    <h6 class="card-subtitle mb-2">内容について</h6>
+    <p class="card-text">
+    部報に乗せられるレベルで、常識の範囲内でやれることに限ろう！
+    </p>
+  </div>
+</div>
 
 <!--<table>
   <thead>
@@ -29,10 +56,13 @@
   </tbody>
 </table>-->
 <div>
-<h3>エントリー一覧</h3>
+<div class="card">
+<div class="card-body">
+<h3 class="card-title">エントリー一覧</h3>
 <%=react_component "IndexTable" ,{}%>
-</div>
+<%= link_to '新規エントリー', new_entry_path,:class=>"btn btn-primary active"%>
+</div></div></div>
 <br>
 
-<%= link_to '新規エントリー', new_entry_path %>
 <%= javascript_pack_tag 'application' %>
+</div>

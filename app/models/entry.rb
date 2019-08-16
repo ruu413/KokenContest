@@ -5,7 +5,7 @@ class Entry < ApplicationRecord
   #has_secure_password
   self.inheritance_column = :_type_disabled # typeを使用可能に
   validates :users, presence: true
-  validates :users, length:{in:1..3}
+  validates :users, length:{in:1..4}
   validates :teamname, length:{ minimum:1}
   validates :type,inclusion:{in:[0,1]}
 end

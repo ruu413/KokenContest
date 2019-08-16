@@ -1,3 +1,5 @@
+<div class="container">
+<div class="card">
 <p id="notice"><%= notice %></p>
 <%gradestr = ["1年","2年","3年","4年","院1年","院2年"]%>
 <p>
@@ -13,11 +15,11 @@
   <%= @entry.teamname %>
 </p>
 <div>
-  <p><strong>構成員:</strong></p>
+  <p><strong>構成員:</strong><br>
   <%@entry.users.each do |user|%>
     <%=gradestr[user.grade]%>
-    <%=user.name%>
-  <%end%>
+    <%=user.name%><br>
+  <%end%></p>
 </div>
 <p>
   <strong>作品名:</strong>
@@ -36,5 +38,7 @@
     <%=link_to  file.blob.filename.to_s, url_for(file)%>
   <%end%>
 </p>
-<%= link_to 'Edit', edit_entry_path(@entry) %> |
-<%= link_to 'Back', entries_path %>
+<%= link_to '編集', edit_entry_path(@entry) %> |
+<%= link_to '戻る', entries_path %>
+</div>
+</div>

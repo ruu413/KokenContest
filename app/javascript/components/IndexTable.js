@@ -32,7 +32,7 @@ class IndexTable extends React.Component {
   }
     
   render() {
-    return (<React.Fragment><table><tbody>
+    return (<React.Fragment><table className="table"><tbody>
       <tr>
       {/*<th>発表順</th>*/}
       <th>部門</th>
@@ -108,9 +108,9 @@ class EntryTr extends React.Component {
           </td>
           
             
-          <td><a href={'/entries/'+this.props.entry.id}>詳細</a></td>
-          <td><a href={'/entries/'+this.props.entry.id+'/edit'}>編集</a></td>
-          <td><a data-confirm='Are you sure?' rel='nofollow' data-method='delete' href={'/entries/'+this.props.entry.id}>削除</a></td>
+          <td><a className="btn-sm btn-secondary active" href={'/entries/'+this.props.entry.id}>詳細</a></td>
+          <td><a className="btn-sm btn-secondary active" href={'/entries/'+this.props.entry.id+'/edit'}>編集</a></td>
+          <td><a className="btn-sm btn-danger active" data-confirm='Are you sure?' rel='nofollow' data-method='delete' href={'/entries/'+this.props.entry.id}>削除</a></td>
           
         </tr>
         {users_1toE.map(
