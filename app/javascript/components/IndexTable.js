@@ -32,7 +32,7 @@ class IndexTable extends React.Component {
   }
     
   render() {
-    return (<React.Fragment><table className="table"><tbody>
+    return (<React.Fragment><div className="table-responsive"><table className="table"><tbody>
       <tr>
       {/*<th>発表順</th>*/}
       <th>部門</th>
@@ -48,7 +48,7 @@ class IndexTable extends React.Component {
         return <EntryTr entry={entry} key={entry.id}></EntryTr>;
     })
   }
-    </tbody></table>
+    </tbody></table></div>
     
       <select hidden={true} defaultValue={1} onChange={this._onChangeSort.bind(this)}> 
       <option value = {0}>発表順</option>
@@ -82,35 +82,38 @@ class EntryTr extends React.Component {
     let users_1toE = this.props.entry.users.slice()
     users_1toE.shift()
     //console.log(users_1toE)
+    const colwidth = { minWidth: "100px", width: "100px", maxWidth: "100px" };
+    const colwidth2 = { minWidth: "70px", width: "70px", maxWidth: "70px" };
+    const descrwidth = { minWidth: "200px", maxWidth: "400px" };
     return (
       <React.Fragment>
         <tr>
           {/*<td rowSpan={span}>
             {this.props.entry.order}
           </td>*/}
-          <td rowSpan={span}>
+          <td style={colwidth2} rowSpan={span}>
             {getTypeStr(this.props.entry.type)}
           </td>
-          <td rowSpan={span}>
+          <td style={colwidth} rowSpan={span}>
             {this.props.entry.teamname}
           </td>
-          <td>
+          <td style={colwidth2}>
             {getGradeStr(this.props.entry.users[0].grade)}
           </td>
-          <td>
+          <td style={colwidth}>
             {this.props.entry.users[0].name}
           </td>
-          <td rowSpan={span}>
+          <td style={colwidth} rowSpan={span}>
             {this.props.entry.prodname}
           </td>
-          <td rowSpan={span}>
+          <td style={descrwidth} rowSpan={span}>
             {this.props.entry.description}
           </td>
           
             
-          <td><a className="btn-sm btn-secondary active" href={'/entries/'+this.props.entry.id}>詳細</a></td>
-          <td><a className="btn-sm btn-secondary active" href={'/entries/'+this.props.entry.id+'/edit'}>編集</a></td>
-          <td><a className="btn-sm btn-danger active" data-confirm='Are you sure?' rel='nofollow' data-method='delete' href={'/entries/'+this.props.entry.id}>削除</a></td>
+          <td style={colwidth2}><a className="btn-sm btn-secondary active" href={'/entries/'+this.props.entry.id}>詳細</a></td>
+          <td style={colwidth2}><a className="btn-sm btn-secondary active" href={'/entries/'+this.props.entry.id+'/edit'}>編集</a></td>
+          <td style={colwidth2}><a className="btn-sm btn-danger active" data-confirm='Are you sure?' rel='nofollow' data-method='delete' href={'/entries/'+this.props.entry.id}>削除</a></td>
           
         </tr>
         {users_1toE.map(
