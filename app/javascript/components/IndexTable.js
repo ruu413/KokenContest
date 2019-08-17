@@ -23,7 +23,11 @@ class IndexTable extends React.Component {
   _getJson() {
     if (this.req.readyState == 4) {  // 通信の完了時
       if (this.req.status == 200) {  // 通信の成功時
-        this.setState({ entries:JSON.parse(this.req.responseText) });
+        let entries = JSON.parse(this.req.responseText);
+        entries.sort((a, b) => {
+          return a.order - b.order
+        })
+        this.setState({ entries:entries });
         //console.log(JSON.parse(this.req.responseText));
       }
     } else {
