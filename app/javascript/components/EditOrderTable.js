@@ -25,7 +25,7 @@ class EditOrderTable extends React.Component {
       if (this.req.status == 200) {  // 通信の成功時
         let entries = JSON.parse(this.req.responseText);
         entries.sort((a, b) => {
-          return a.order - b.order
+          return a.id - b.id
         })
         this.setState({ entries: entries });
         //console.log(JSON.parse(this.req.responseText));
