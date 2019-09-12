@@ -5,11 +5,11 @@
 <table>
   <thead>
     <tr>
+      <th>entry id</td>
       <th>School num</th>
       <th>Evaluate1</th>
       <th>Evaluate2</th>
       <th>Evaluate3</th>
-      <th>Evaluate4</th>
       <th>Comment</th>
       <th colspan="3"></th>
     </tr>
@@ -18,6 +18,7 @@
   <tbody>
     <% @evaluations.each do |evaluation| %>
       <tr>
+        <td><%= evaluation.entry_id %></td>
         <td><%= evaluation.school_num %></td>
         <td><%= evaluation.evaluate1 %></td>
         <td><%= evaluation.evaluate2 %></td>

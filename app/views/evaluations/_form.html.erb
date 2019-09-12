@@ -10,46 +10,44 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="form-group">
     <%= form.label "学籍番号" %>
-    <%= form.number_field :school_num %>
+    <%= form.number_field :school_num, class: "form-control"%>
   </div>
 
   <div class="field">
-    <%= form.label :evaluate1 %>
+    <%= form.label "新規性" %>
     <%1.upto(5) do |i|%>
-      <label style="display:inline; "><%= form.radio_button :evaluate1,i %><%=i%></label>
+      <div class="custom-control custom-radio custom-control-inline">
+        <%= form.radio_button :evaluate1,i,{class: "custom-control-input", id:"radio1_"+i.to_s} %>
+        <label class = "custom-control-label" for = "radio1_<%=i.to_s%>" ><%=i%></label>
+      </div>
     <%end%>
   </div>
-
   <div class="field">
-    <%= form.label :evaluate2 %>
+    <%= form.label "新規性" %>
     <%1.upto(5) do |i|%>
-      <label style="display:inline; "><%= form.radio_button :evaluate2,i %><%=i%></label>
+      <div class="custom-control custom-radio custom-control-inline">
+        <%= form.radio_button :evaluate2,i,{class: "custom-control-input", id:"radio2_"+i.to_s} %>
+        <label class = "custom-control-label" for = "radio2_<%=i.to_s%>" ><%=i%></label>
+      </div>
     <%end%>
   </div>
-
   <div class="field">
-    <%= form.label :evaluate3 %>
+    <%= form.label "期待度" %>
     <%1.upto(5) do |i|%>
-      <label style="display:inline; "><%= form.radio_button :evaluate3,i %><%=i%></label>
+      <div class="custom-control custom-radio custom-control-inline">
+        <%= form.radio_button :evaluate3,i,{class: "custom-control-input", id:"radio3_"+i.to_s} %>
+        <label class = "custom-control-label" for = "radio3_<%=i.to_s%>" ><%=i%></label>
+      </div>
     <%end%>
   </div>
-
-  <div class="field">
-    <%= form.label :evaluate4 %>
-    <%1.upto(5) do |i|%>
-      <label style="display:inline; "><%= form.radio_button :evaluate4,i %><%=i%></label>
-    <%end%>
-  </div>
-
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label "コメント" %>
-    <%= form.text_area :comment %>
+    <%= form.text_area :comment, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit "送信"%>
+    <%= form.submit "送信" ,class: "btn btn-primary"%>
   </div>
 <% end %>
