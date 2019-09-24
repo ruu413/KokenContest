@@ -19,6 +19,8 @@ class RankingController < ApplicationController
             end
             entry.evaluation = sum/3.0/entry.evaluations.size
         end
+        @entries = @entries.sort_by do |e| -e.evaluation end
+        @entries = @entries[0,3]
     end
 
     def show1
@@ -33,7 +35,9 @@ class RankingController < ApplicationController
             end
             entry.evaluation = sum.to_f/entry.evaluations.size
         end
-
+        
+        @entries = @entries.sort_by do |e| -e.evaluation end
+        @entries = @entries[0,3]
         render :show
     end
 
@@ -49,6 +53,8 @@ class RankingController < ApplicationController
             end
             entry.evaluation = sum.to_f/entry.evaluations.size
         end
+        @entries = @entries.sort_by do |e| -e.evaluation end
+        @entries = @entries[0,3]
         render :show
     end
 
@@ -64,6 +70,8 @@ class RankingController < ApplicationController
             end
             entry.evaluation = sum.to_f/entry.evaluations.size
         end
+        @entries = @entries.sort_by do |e| -e.evaluation end
+        @entries = @entries[0,3]
         render :show
     end
     

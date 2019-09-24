@@ -1,3 +1,9 @@
+<p><%=@entries.size%></p>
 <%@entries.each do |item| %>
-  <%=item.evaluation%>
+  <p><%=item.evaluation%></p>
 <% end %>
+
+  <%=react_component "RankingTable", jsonurl: "/ranking.json"%>
+  <%=react_component "RankingTable", jsonurl: "/ranking/1.json"%>
+  <%=react_component "RankingTable", jsonurl: "/ranking/2.json"%>
+  <%=react_component "RankingTable", jsonurl: "/ranking/3.json"%>
