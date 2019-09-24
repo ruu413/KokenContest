@@ -8,7 +8,7 @@ class RankingController < ApplicationController
     
     def index
         @entries.each do |entry|
-            if entry.evaluations.size == 0
+            if entry.evaluations.size == 0||entry.is_evaluated == false
                 entry.evaluation = 0
                 next
             end
@@ -24,43 +24,47 @@ class RankingController < ApplicationController
     def show1
         
         @entries.each do |entry|
-            if entry.evaluations.size == 0
+            if entry.evaluations.size == 0 ||entry.is_evaluated == false
                 entry.evaluation = 0
                 next
             end
             sum = entry.evaluations.inject(0) do |i,j|
                 i += j.evaluate1
             end
-            entry.evaluation = sum/entry.evaluations.size/3
+            entry.evaluation = sum.to_f/entry.evaluations.size
         end
+
+        render :show
     end
 
     def show2
         
         @entries.each do |entry|
-            if entry.evaluations.size == 0
+            if entry.evaluations.size == 0||entry.is_evaluated == false
                 entry.evaluation = 0
                 next
             end
             sum = entry.evaluations.inject(0) do |i,j|
                 i += j.evaluate2
             end
-            entry.evaluation = sum/entry.evaluations.size/3
+            entry.evaluation = sum.to_f/entry.evaluations.size
         end
+        render :show
     end
 
     def show3
         
         @entries.each do |entry|
-            if entry.evaluations.size == 0
+            if entry.evaluations.size == 0||entry.is_evaluated == false
                 entry.evaluation = 0
                 next
             end
             sum = entry.evaluations.inject(0) do |i,j|
                 i += j.evaluate3
             end
-            entry.evaluation = sum/entry.evaluations.size/3
+            entry.evaluation = sum.to_f/entry.evaluations.size
         end
+        render :show
     end
     
     def getEntries

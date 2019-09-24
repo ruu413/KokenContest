@@ -128,6 +128,6 @@ class EntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
-      params.require(:entry).permit(:prodname,:type,:order,:evaorder,:teamname,:description,:users,files: [])
+      params.require(:entry).permit(:is_evaluated,:prodname,:type,:order,:evaorder,:teamname,:description,:users,files: [])
     end
 end

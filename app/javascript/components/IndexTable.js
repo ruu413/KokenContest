@@ -25,7 +25,7 @@ class IndexTable extends React.Component {
       if (this.req.status == 200) {  // 通信の成功時
         let entries = JSON.parse(this.req.responseText);
         entries.sort((a, b) => {
-          return a.id - b.id
+          return a.order - b.order
         })
         this.setState({ entries:entries });
         //console.log(JSON.parse(this.req.responseText));
@@ -36,7 +36,12 @@ class IndexTable extends React.Component {
   }
     
   render() {
-    return (<React.Fragment><div className="table-responsive"><table className="table"><tbody>
+    return (<React.Fragment>
+      <select hidden={false} defaultValue={0} onChange={this._onChangeSort.bind(this)} className="form-control">
+        <option value={0}>発表順</option>
+        <option value={1}>エントリー順</option>
+      </select>
+      <div className="table-responsive"><table className="table"><tbody>
       <tr>
       {/*<th>発表順</th>*/}
       <th>部門</th>
@@ -45,7 +50,7 @@ class IndexTable extends React.Component {
       <th>名前</th>
       <th>作品名</th>  
       <th>説明</th>
-      <th></th>
+      {/*<th></th>*/}
       <th></th>
       <th></th>
       <th></th></tr>
@@ -55,10 +60,6 @@ class IndexTable extends React.Component {
   }
     </tbody></table></div>
     
-      <select hidden={true} defaultValue={1} onChange={this._onChangeSort.bind(this)}> 
-      <option value = {0}>発表順</option>
-      <option value={1}>エントリー順</option>
-    </select>
     </React.Fragment>
     )
   }
@@ -116,7 +117,7 @@ class EntryTr extends React.Component {
           </td>
           
             
-          <td style={colwidth2}><a className="btn-sm btn-secondary active" onClick={() => window.open( '/evaluations/' + this.props.entry.id + "/new" )}>評価</a></td>
+          {/*<td style={colwidth2}><a className="btn-sm btn-secondary active" onClick={() => window.open( '/evaluations/' + this.props.entry.id + "/new" )}>評価</a></td>*/}
           <td style={colwidth2}><a className="btn-sm btn-secondary active" href={'/entries/' + this.props.entry.id}>詳細</a></td>
           <td style={colwidth2}><a className="btn-sm btn-secondary active" href={'/entries/'+this.props.entry.id+'/edit'}>編集</a></td>
           <td style={colwidth2}><a className="btn-sm btn-danger active" data-confirm='Are you sure?' rel='nofollow' data-method='delete' href={'/entries/'+this.props.entry.id}>削除</a></td>
