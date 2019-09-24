@@ -1,10 +1,10 @@
 class RankingController < ApplicationController
     before_action :getEntries
     before_action :basic_auth_admin
-    caches_action :index, cache_path: -> (c) do build_path(c, @evaluations)end
-    caches_action :show1, cache_path: -> (c) do build_path(c, @evaluations)end
-    caches_action :show2, cache_path: -> (c) do build_path(c, @evaluations)end
-    caches_action :show3, cache_path: -> (c) do build_path(c, @evaluations)end
+    #caches_action :index, cache_path: -> (c) do build_path(c, @evaluations)end
+    #caches_action :show1, cache_path: -> (c) do build_path(c, @evaluations)end
+    #caches_action :show2, cache_path: -> (c) do build_path(c, @evaluations)end
+    #caches_action :show3, cache_path: -> (c) do build_path(c, @evaluations)end
     
     def index
         @entries.each do |entry|
