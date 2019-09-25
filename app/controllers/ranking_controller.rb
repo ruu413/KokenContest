@@ -15,6 +15,7 @@ class RankingController < ApplicationController
     #caches_action :show_hard_3, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
     
 
+
     def getRank3 entries
         num = 0
         rank=0
@@ -163,7 +164,7 @@ class RankingController < ApplicationController
     end
 
     def getSoftEntries
-        @entries = Entry.where(type:1 is_evaluated: true)
+        @entries = Entry.where(type:1, is_evaluated: true)
     end
     def getHardEntries
         @entries = Entry.where(type: 0, is_evaluated: true)
