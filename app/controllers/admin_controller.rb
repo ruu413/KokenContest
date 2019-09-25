@@ -8,7 +8,7 @@ class AdminController < ApplicationController
     entries = params["entries"]
     entries.each do |i,entry|
       ent = Entry.find(entry[:id])
-      ent.update(order:entry[:order])
+      ent.update(order:entry[:order],is_evaluated:entry[:is_evaluated])
     end
   end
 end

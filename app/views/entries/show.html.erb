@@ -38,6 +38,15 @@
     <%=link_to  file.blob.filename.to_s, url_for(file)%>
   <%end%>
 </p>
+
+<div>
+  <strong>コメント一覧</strong>
+  <%@entry.evaluations.each do |ev|%>
+    <%if ev.comment != nil && ev.comment != ""%>
+      <p><%=ev.comment%></p>
+    <%end%>
+  <%end%>  
+</div>
 <%= link_to '編集', edit_entry_path(@entry) %> |
 <%= link_to '戻る', entries_path %>
 </div>

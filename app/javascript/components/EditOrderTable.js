@@ -12,13 +12,17 @@ class EditOrderTable extends React.Component {
   constructor(props) {
     super(props);
     //console.log(props);
+    this.state = {
+      entries: []  // props.default_entries,
+    };
+
+  }
+  componentDidMount() {
+
     this.req = new XMLHttpRequest();
     this.req.onreadystatechange = this._getJson.bind(this);
     this.req.open('GET', '/entries.json', true);
     this.req.send(null);
-    this.state = {
-      entries: []  // props.default_entries,
-    };
   }
   _getJson() {
     if (this.req.readyState == 4) {  // 通信の完了時
@@ -36,7 +40,12 @@ class EditOrderTable extends React.Component {
   _onChangeForm(i,ev) {
     let entry = this.state.entries.slice();
     entry[i].order = ev.target.value;
-    this.setState({ entry: entry });
+    this.setState({ entries: entry });
+  }
+  _onChangeCheck(i, ev) {
+    let entry = this.state.entries.slice();
+    entry[i].is_evaluated = !entry[i].is_evaluated;//ev.target.value;
+    this.setState({ entries: entry });
   }
 
   render() {
@@ -49,11 +58,13 @@ class EditOrderTable extends React.Component {
       <th>名前</th>
       <th>作品名</th>  
       <th>説明</th>
+      <th>評価</th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th></tr>
       {this.state.entries.map((entry,i) => {
-        return <EntryTr onChangeOrder={(ev) => { this._onChangeForm(i, ev) }} entry={entry} key={entry.id}></EntryTr>;
+        return <EntryTr onChangeOrder={(ev) => { this._onChangeForm(i, ev) }} onChangeCheck={(ev) => { this._onChangeCheck(i, ev) }} entry={entry} key={entry.id}></EntryTr>;
     })
   }
     </tbody></table>
@@ -112,8 +123,20 @@ class EntryTr extends React.Component {
           <td rowSpan={span}>
             {this.props.entry.description}
           </td>
+          <td rowSpan={span}>
+            <input
+              type="checkbox"
+              checked={this.props.entry.is_evaluated}
+              onChange={this.props.onChangeCheck}
+            />
+            <input
+              type="hidden"
+              name={"entries[" + this.props.entry.id + "][is_evaluated]"}
+              value={this.props.entry.is_evaluated}
+            />
+          </td>
           
-            
+          <td><a onClick={() => window.open('/evaluations/' + this.props.entry.id + "/new")}>評価</a></td>
           <td><a href={'/entries/'+this.props.entry.id}>詳細</a></td>
           <td><a href={'/entries/'+this.props.entry.id+'/edit'}>編集</a></td>
           <td><a data-confirm='Are you sure?' rel='nofollow' data-method='delete' href={'/entries/'+this.props.entry.id}>削除</a></td>

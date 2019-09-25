@@ -25,7 +25,7 @@ class RankingTable extends React.Component {
             if (this.req.status == 200) {  // 通信の成功時
                 let entries = JSON.parse(this.req.responseText);
                 entries.sort((a, b) => {
-                    return a.evaluation - b.evaluation
+                    return -(a.evaluation - b.evaluation)
                 })
                 this.setState({ entries: entries });
                 //console.log(JSON.parse(this.req.responseText));
@@ -40,8 +40,11 @@ class RankingTable extends React.Component {
             <div className="table-responsive"><table className="table"><tbody>
                 <tr>
                     {/*<th>発表順</th>*/}
+                    <th>評価平均</th>
                     <th>部門</th>
                     <th>チーム名</th>
+                    <th>学年</th>
+                    <th>名前</th>
                     <th>作品名</th>
                     <th>説明</th>
                     {/*<th></th>*/}
@@ -58,13 +61,18 @@ class RankingTable extends React.Component {
         )
     }
 }
+
+
+
 class EntryTr extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
         //console.log(this.props)
-        const span = 1
+        const span = this.props.entry.users.length
+        let users_1toE = this.props.entry.users.slice()
+        users_1toE.shift()
         //console.log(users_1toE)
         const colwidth = { minWidth: "100px", width: "100px", maxWidth: "100px" };
         const colwidth2 = { minWidth: "70px", width: "70px", maxWidth: "70px" };
@@ -75,11 +83,20 @@ class EntryTr extends React.Component {
                     {/*<td rowSpan={span}>
             {this.props.entry.order}
           </td>*/}
+                    <td style={colwidth} rowSpan={span}>
+                        {this.props.entry.evaluation}
+                    </td>
                     <td style={colwidth2} rowSpan={span}>
                         {getTypeStr(this.props.entry.type)}
                     </td>
                     <td style={colwidth} rowSpan={span}>
                         {this.props.entry.teamname}
+                    </td>
+                    <td style={colwidth2}>
+                        {getGradeStr(this.props.entry.users[0].grade)}
+                    </td>
+                    <td style={colwidth}>
+                        {this.props.entry.users[0].name}
                     </td>
                     <td style={colwidth} rowSpan={span}>
                         {this.props.entry.prodname}
@@ -95,6 +112,12 @@ class EntryTr extends React.Component {
                     <td style={colwidth2}><a className="btn-sm btn-danger active" data-confirm='Are you sure?' rel='nofollow' data-method='delete' href={'/entries/' + this.props.entry.id}>削除</a></td>
 
                 </tr>
+                {users_1toE.map(
+                    (user) => <tr key={user.id}>
+                        <td>{getGradeStr(user.grade)}</td>
+                        <td>{user.name}</td>
+                    </tr>)
+                }
             </React.Fragment>
         );
     }

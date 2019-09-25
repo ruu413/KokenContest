@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>entry id</td>
+      <th>teamname</td>
       <th>School num</th>
       <th>Evaluate1</th>
       <th>Evaluate2</th>
@@ -18,12 +18,11 @@
   <tbody>
     <% @evaluations.each do |evaluation| %>
       <tr>
-        <td><%= evaluation.entry_id %></td>
+        <td><%= evaluation.entry.teamname %></td>
         <td><%= evaluation.school_num %></td>
         <td><%= evaluation.evaluate1 %></td>
         <td><%= evaluation.evaluate2 %></td>
         <td><%= evaluation.evaluate3 %></td>
-        <td><%= evaluation.evaluate4 %></td>
         <td><%= evaluation.comment %></td>
         <td><%= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
