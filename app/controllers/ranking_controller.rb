@@ -1,18 +1,18 @@
 class RankingController < ApplicationController
     #before_action :getEntries
     before_action :basic_auth_admin
-    caches_action :index, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
-    caches_action :show1, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
-    caches_action :show2, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
-    caches_action :show3, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
-    caches_action :show_soft, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
-    caches_action :show_hard, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
-    caches_action :show_soft_1, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
-    caches_action :show_soft_2, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
-    caches_action :show_soft_3, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
-    caches_action :show_hard_1, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
-    caches_action :show_hard_2, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
-    caches_action :show_hard_3, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :index, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :show1, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :show2, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :show3, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :show_soft, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :show_hard, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :show_soft_1, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :show_soft_2, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :show_soft_3, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :show_hard_1, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :show_hard_2, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
+    #caches_action :show_hard_3, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
     
 
     def getRank3 entries
@@ -163,7 +163,7 @@ class RankingController < ApplicationController
     end
 
     def getSoftEntries
-        @entries = Entry.where(type:1, is_evaluated: true)
+        @entries = Entry.where(type:1 is_evaluated: true)
     end
     def getHardEntries
         @entries = Entry.where(type: 0, is_evaluated: true)
