@@ -1,8 +1,8 @@
 class EvaluationsController < ApplicationController
   before_action :set_evaluation, only: [:destroy]
   
-  before_action :basic_auth, only: [:new]
-  before_action :basic_auth_admin, except:[:new]
+  before_action :basic_auth, only: [:new,:show,:create]
+  before_action :basic_auth_admin, only:[:index,:destroy,:update,:edit]
   # GET /evaluations
   # GET /evaluations.json
   def index
