@@ -117,10 +117,10 @@ class EntryTr extends React.Component {
           </td>
           
             
-          {/*<td style={colwidth2}><a className="btn-sm btn-secondary active" onClick={() => window.open( '/evaluations/' + this.props.entry.id + "/new" )}>評価</a></td>*/}
+          <td style={colwidth2}><a className="btn-sm btn-secondary active" onClick={() => window.open( '/evaluations/' + this.props.entry.id + "/new" )}>評価</a></td>
           <td style={colwidth2}><a className="btn-sm btn-secondary active" href={'/entries/' + this.props.entry.id}>詳細</a></td>
           <td style={colwidth2}><a className="btn-sm btn-secondary active" href={'/entries/'+this.props.entry.id+'/edit'}>編集</a></td>
-          <td style={colwidth2}><a className="btn-sm btn-danger active" data-confirm='Are you sure?' rel='nofollow' data-method='delete' href={'/entries/'+this.props.entry.id}>削除</a></td>
+          {/*<td style={colwidth2}><a className="btn-sm btn-danger active" data-confirm='Are you sure?' rel='nofollow' data-method='delete' href={'/entries/'+this.props.entry.id}>削除</a></td>*/}
           
         </tr>
         {users_1toE.map(
