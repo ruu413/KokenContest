@@ -16,16 +16,28 @@ class EntriesController < ApplicationController
 
   # GET /entries/new
   def new
+    if ENV["NEW_ENTRY"] == nil
+      raise ActionController::RoutingError
+      return
+    end
     @entry = Entry.new
   end
 
   # GET /entries/1/edit
   def edit
+    if ENV["NEW_ENTRY"] == nil
+      raise ActionController::RoutingError
+      return
+    end
   end
 
   # POST /entries
   # POST /entries.json
   def create
+    if ENV["NEW_ENTRY"] == nil
+      raise ActionController::RoutingError
+      return
+    end
     @entry = Entry.new(entry_params)
     success_flag=true
     params[:entry][:users].each do |user|

@@ -36,6 +36,7 @@ class IndexTable extends React.Component {
   }
     
   render() {
+    console.log(this.props)
     return (<React.Fragment>
       <select hidden={false} defaultValue={0} onChange={this._onChangeSort.bind(this)} className="form-control">
         <option value={0}>発表順</option>
@@ -51,11 +52,11 @@ class IndexTable extends React.Component {
       <th>作品名</th>  
       <th>説明</th>
       {/*<th></th>*/}
-      <th></th>
-      <th></th>
+      {(this.props.editable != false)?<th></th>:<React.Fragment />}
+      {(this.props.editable != false)?<th></th>:<React.Fragment />}
       <th></th></tr>
       {this.state.entries.map((entry) => {
-        return <EntryTr entry={entry} key={entry.id}></EntryTr>;
+        return <EntryTr entry={entry} key={entry.id} editable={this.props.editable}></EntryTr>;
     })
   }
     </tbody></table></div>
@@ -117,9 +118,9 @@ class EntryTr extends React.Component {
           </td>
           
             
-          <td style={colwidth2}><a className="btn-sm btn-secondary active" onClick={() => window.open( '/evaluations/' + this.props.entry.id + "/new" )}>評価</a></td>
+          {(this.props.editable != false)?<td style={colwidth2}><a className="btn-sm btn-secondary active" onClick={() => window.open( '/evaluations/' + this.props.entry.id + "/new" )}>評価</a></td>:<React.Fragment />}
           <td style={colwidth2}><a className="btn-sm btn-secondary active" href={'/entries/' + this.props.entry.id}>詳細</a></td>
-          <td style={colwidth2}><a className="btn-sm btn-secondary active" href={'/entries/'+this.props.entry.id+'/edit'}>編集</a></td>
+          {(this.props.editable != false)?<td style={colwidth2}><a className="btn-sm btn-secondary active" href={'/entries/'+this.props.entry.id+'/edit'}>編集</a></td>:<React.Fragment />}
           {/*<td style={colwidth2}><a className="btn-sm btn-danger active" data-confirm='Are you sure?' rel='nofollow' data-method='delete' href={'/entries/'+this.props.entry.id}>削除</a></td>*/}
           
         </tr>

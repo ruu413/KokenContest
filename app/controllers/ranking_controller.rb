@@ -1,6 +1,6 @@
 class RankingController < ApplicationController
     #before_action :getEntries
-    before_action :basic_auth_admin
+    before_action :basic_auth
     #caches_action :index, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
     #caches_action :show1, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end
     #caches_action :show2, cache_path: -> (c) do build_path(c, Evaluation.order(:updated_at).last)end

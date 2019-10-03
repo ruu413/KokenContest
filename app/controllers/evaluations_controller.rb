@@ -16,17 +16,28 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations/(entryid)/new
   def new
+    if ENV["NEW_EVALUATION"] == nil
+      raise ActionController::RoutingError
+      return
+    end
     @entry = Entry.find(params[:id])
     @evaluation = Evaluation.new
   end
 
   # GET /evaluations/1/edit
   def edit
+    raise ActionController::RoutingError
+    return
   end
 
   # POST /evaluations/(entryid)
   # POST /evaluations/(entryid).json
   def create
+    
+    if ENV["NEW_EVALUATION"] == nil
+      raise ActionController::RoutingError
+      return
+    end
     @entry = Entry.find(params[:id])
     @evaluation = @entry.evaluations.find_by(school_num:params[:evaluation][:school_num])
     success_flag = true
@@ -60,6 +71,10 @@ class EvaluationsController < ApplicationController
   # PATCH/PUT /evaluations/1
   # PATCH/PUT /evaluations/1.json
   def update
+    if ENV["NEW_EVALUATION"] == nil
+      raise ActionController::RoutingError
+      return
+    end
     respond_to do |format|
       if @evaluation.update(evaluation_params)
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
