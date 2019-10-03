@@ -82,7 +82,7 @@ class EntryTr extends React.Component {
             {this.props.entry.order}
           </td>*/}
                     <td style={colwidth} rowSpan={span}>
-                        {this.props.entry.evaluation}
+                        {this.props.entry.evaluation.toFixed(4)}
                     </td>
                     <td style={colwidth2} rowSpan={span}>
                         {getTypeStr(this.props.entry.type)}
